@@ -1,37 +1,29 @@
-import React, { useState } from 'react';
-import {
-  Button,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import React from 'react';
+import Home from './components/Home';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { StatusBar, useColorScheme } from 'react-native';
+import MessagePage from './components/MessagePage';
 
 const App = () => {
+  const Stack = createStackNavigator();
   const isDarkMode = useColorScheme() === 'dark';
 
-  const [counter, setCounter] = useState(0);
-
   return (
-    <View style={styles.container}>
+    <NavigationContainer>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <Text style={styles.text}>Hello World</Text>
-      <Text> Counter: {counter} </Text>
-      <Button title="Click me" onPress={() => setCounter(counter + 1)} />
-    </View>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={Home}
+        />
+        <Stack.Screen
+          name="MessagePage"
+          component={MessagePage}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  text: {
-    fontSize: 24,
-  }
-});
 
 export default App;
