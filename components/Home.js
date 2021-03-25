@@ -14,10 +14,22 @@ const Home = ({ navigation }) => {
          <Text style={styles.text}>Hello World</Text>
          <Text> Counter: {counter} </Text>
          <View style={styles.buttonDiv}>
-            <Button title="Click me" onPress={() => setCounter(counter + 1)} />
+            <Button
+               title="Click me"
+               onPress={() => setCounter(counter + 1)}
+            />
          </View>
          <View style={styles.buttonDiv}>
-            <Button title="Messages" onPress={() => navigation.navigate('MessagePage')} />
+            <Button
+               title="Todos"
+               onPress={() => navigation.navigate('Todos')}
+            />
+         </View>
+         <View style={styles.buttonDiv}>
+            <Button
+               title="Messages"
+               onPress={() => navigation.navigate('Messages')}
+            />
          </View>
       </View>
    );

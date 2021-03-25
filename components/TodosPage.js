@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, ActivityIndicator, ScrollView } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
-const MessagePage = () => {
+const TodosPage = () => {
    const [isLoading, setLoading] = useState(true);
    const [todos, setTodos] = useState([]);
 
@@ -26,7 +26,10 @@ const MessagePage = () => {
    const renderTodos = ({ item }) => {
       return (
          <View style={styles.todosDiv}>
-            <Text style={styles.todosText}> {item.id}. {item.title} </Text>
+            {item.completed ?
+               <Text style={styles.completedTodos}> {item.id}. {item.title} </Text> :
+               <Text style={styles.uncompleteTodos}> {item.id}. {item.title} </Text>
+            }
          </View>
       );
    };
@@ -66,10 +69,15 @@ const styles = StyleSheet.create({
       paddingRight: 10,
 
    },
-   todosText: {
+   completedTodos: {
       borderBottomColor: 'black',
       borderBottomWidth: 1,
+   },
+   uncompleteTodos: {
+      borderBottomColor: 'black',
+      borderBottomWidth: 1,
+      color: 'gray',
    }
 });
 
-export default MessagePage;
+export default TodosPage;
